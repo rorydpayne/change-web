@@ -1,0 +1,14 @@
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+md-input-container, md-checkbox, md-radio-button {
+  &.full-width {
+    width: 100%;
+  }
+}
+
+$md-xs: 599px;
+

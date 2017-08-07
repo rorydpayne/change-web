@@ -1,0 +1,14 @@
+<div>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" fxLayout="column" fxFlex="100" fxLayout="column"
+        fxLayoutAlign="center center">
+    <md-input-container class="full-width">
+      <input mdInput placeholder="Email" [(ngModel)]="login.email" name="email">
+    </md-input-container>
+    <md-input-container class="full-width">
+      <input mdInput type="password" placeholder="Password" [(ngModel)]="login.password" name="password">
+    </md-input-container>
+    <!--<md-checkbox [(ngModel)]="login.acceptTerms" name="terms">Accept <a>terms</a></md-checkbox>-->
+    <button type="select" md-raised-button color="primary">Login</button>
+  </form>
+  <div fxFlex="100" fxLayoutAlign="center">Don't have an account? <a routerLink="/register">Sign up</a></div>
+</div>
