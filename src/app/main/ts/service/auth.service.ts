@@ -6,6 +6,7 @@ import {Http, Headers, URLSearchParams} from "@angular/http";
 import {AuthResponse} from "../model/auth-response";
 import {UserSignup} from "../model/user-signup";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(private http: Http,
               private tokenService: TokenService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
   }
 
   public login(login: Login): Promise<AuthResponse> {
@@ -46,6 +48,12 @@ export class AuthService {
         login.password = userSignUp.getPassword();
         this.login(login)
       });
+  }
+
+  public providerAuthentication(providerName: string, authUrl: string): void {
+    authUrl += '&redirect_uri=' + environment.redirectUri;
+    authUrl += '&state=' + this.tokenService.generateStateToken();
+    window.location.href = authUrl;
   }
 
   public authenticate(): Promise<any> {

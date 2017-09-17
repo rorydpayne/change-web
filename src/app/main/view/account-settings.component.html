@@ -1,0 +1,10 @@
+<div>
+  <form (ngSubmit)="onSubmit()" #accountSettingsForm="ngForm" fxLayout="column" fxFlex="100" fxLayout="column"
+                                     fxLayoutAlign="center center" *ngIf="accountSettings">
+        <md-input-container class="full-width">
+          <input mdInput type="number" placeholder="Weekly Deposit ({{accountSettings.currencyCode}})" [(ngModel)]="accountSettings.weeklyDeposit.amount" name="weekly_deposit_amount">
+        </md-input-container>
+        <md-slide-toggle name="roundups_enabled" [(ngModel)]="accountSettings.roundupsEnabled">Roundups Enabled</md-slide-toggle>
+    <button type="select" md-raised-button color="primary">Save</button>
+  </form>
+</div>

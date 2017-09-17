@@ -1,0 +1,18 @@
+<div>
+  <form fxLayout="column" fxFlex="100" fxLayout="column"
+        fxLayoutAlign="center center">
+      <md-select placeholder="Account Provider"
+                 [(ngModel)]="accountSettings.providerId"
+                 (change)="updateProvider()"
+                 *ngIf="accountSettings"
+                  name="provider">
+        <md-option *ngFor="let provider of providers" [value]="provider.id">{{ provider.name }}</md-option>
+      </md-select>
+  </form>
+
+  <md-list>
+    <md-list-item *ngFor="let account of accounts">
+      {{account.description}}
+    </md-list-item>
+  </md-list>
+</div>

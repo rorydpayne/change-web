@@ -1,23 +1,33 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers} from "@angular/http";
-import {environment} from "../../../../environments/environment";
 import 'rxjs/add/operator/toPromise';
-import {TokenService} from "./token.service";
-import {ChangeRestService} from "./change-rest.service";
+import {AccountSettings} from "../model/account-settings";
+import {MonetaryAmount} from "../model/monetary-amount";
+import {AuthenticatedHttpService} from "./authenticated-http.service";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
 
   constructor(
-    private changeService: ChangeRestService
+    private http: AuthenticatedHttpService
   ) {}
 
-  public getUser(): Promise<any> {
-    return this.changeService.sendGet('/me', {})
-      .then(res => res ? res.json().data : null)
-      .catch((err: any) => {
-        console.error('An error occurred', err); // for demo purposes only
-        return Promise.reject(err);
-      })
+  public getUser(): Observable<any> {
+    return this.http.get('/me', {})
+      .map(res => res ? res.json().data : null)
+  }
+
+  public getAccountSettings(): Observable<AccountSettings> {
+    return this.http.get('/account-settings', {})
+      .map(res => {
+        return new AccountSettings().deserialize(res.json());
+      });
+  }
+
+  public updateAccountSettings(accountSettings: AccountSettings): Observable<AccountSettings> {
+    return this.http.put('/account-settings', JSON.stringify(accountSettings))
+      .map(res => {
+        return new AccountSettings().deserialize(res.json());
+      });
   }
 }

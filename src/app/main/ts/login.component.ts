@@ -9,7 +9,6 @@ import {Login} from "./model/login";
   templateUrl: '../view/login.component.html',
   providers: [AuthService]
 })
-
 export class LoginComponent {
 
   login: Login = new Login();

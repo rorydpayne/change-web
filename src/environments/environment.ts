@@ -17,5 +17,6 @@ export const environment = {
     registrationUrl: 'http://localhost:8080/user/register',
     clientId: 'changeWeb',
     clientSecret: 'changewebsecret'
-  }
+  },
+  redirectUri: 'http://localhost:4200/oauth/provider-callback'
 };

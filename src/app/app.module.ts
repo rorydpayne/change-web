@@ -14,14 +14,21 @@ import {TokenService} from "./main/ts/service/token.service";
 import {CookieService} from "angular2-cookie/services/cookies.service";
 import {SignupComponent} from "./main/ts/signup.component";
 import {AuthService} from "./main/ts/service/auth.service";
-import {ChangeRestService} from "./main/ts/service/change-rest.service";
+import {AccountSettingsComponent} from "./main/ts/account-settings.component";
+import {AuthenticatedHttpService} from "./main/ts/service/authenticated-http.service";
+import {AccountComponent} from "./main/ts/account.component";
+import {ProviderService} from "./main/ts/service/provider.service";
+import {OAuthCallbackComponent} from "./main/ts/oauth-callback.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    AccountSettingsComponent,
+    AccountComponent,
+    OAuthCallbackComponent
   ],
   imports: [
     MaterialModule,
@@ -31,7 +38,13 @@ import {ChangeRestService} from "./main/ts/service/change-rest.service";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [TokenService, CookieService, AuthService, ChangeRestService],
+  providers: [
+    TokenService,
+    CookieService,
+    AuthService,
+    AuthenticatedHttpService,
+    ProviderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
